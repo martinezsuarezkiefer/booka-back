@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.proyecto</groupId>
-	<artifactId>bibliotecauji</artifactId>
+	<artifactId>booka</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>bibliotecauji</name>
+	<name>booka</name>
 	<description>Proyecto intermodular biblioteca</description>
 	<url/>
 	<licenses>
