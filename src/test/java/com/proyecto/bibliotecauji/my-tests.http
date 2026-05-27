@@ -1,0 +1,63 @@
+PUT http://localhost:9090/api/usuarios/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJraWVmZXJAdGVzdC5jb20iLCJpYXQiOjE3Nzk4OTc0NjgsImV4cCI6MTc3OTk4Mzg2OH0.OykQjndD4yOLXWHbczr4SfEgR60IAja1vqoBbtB1E40
+Content-Type: application/json
+
+{
+  "nombre": "Kifer"
+}
+
+### Noticias
+GET http://localhost:9090/noticias
+
+### Seguir autor
+POST http://localhost:9090/autores/1702/seguir
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJraWVmZXJAdGVzdC5jb20iLCJpYXQiOjE3Nzk2MzE5MjEsImV4cCI6MTc3OTcxODMyMX0.THDHxCcziJYtCh8uMEvZU-xv3JjJNMl4JcCRQciNQ1E
+
+### Comprobar siguiendo
+GET http://localhost:9090/autores/1702/siguiendo
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJraWVmZXJAdGVzdC5jb20iLCJpYXQiOjE3Nzk2MzE5MjEsImV4cCI6MTc3OTcxODMyMX0.THDHxCcziJYtCh8uMEvZU-xv3JjJNMl4JcCRQciNQ1E
+
+### Autores seguidos
+GET http://localhost:9090/autores/seguidos
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJraWVmZXJAdGVzdC5jb20iLCJpYXQiOjE3Nzk2MzE5MjEsImV4cCI6MTc3OTcxODMyMX0.THDHxCcziJYtCh8uMEvZU-xv3JjJNMl4JcCRQciNQ1E
+
+### Obtener todos los libros
+GET http://localhost:9090/libros/3
+
+### Homepage
+GET http://localhost:9090/libros?page=0&size=20
+
+### Prueba buscar libros
+GET http://localhost:9090/buscar?q=health
+
+### Mostrar libros de la API que contengan Java
+GET https://www.googleapis.com/books/v1/volumes?q=java
+
+###Mostrar categorías
+GET  https://www.googleapis.com/books/v1/volumes?q=a\&maxResults=40
+
+### Importar libros sobre Java
+POST http://localhost:9090/libros/importar?tema=java
+
+### Prueba registro usuario
+POST http://localhost:9090/auth/register
+Content-Type: application/json
+
+{
+  "nombre": "Kiefer",
+  "email": "kiefer@test.com",
+  "password": "123456"
+}
+
+### Prueba login usuario
+POST http://localhost:9090/auth/login
+Content-Type: application/json
+
+{
+  "email":"kiefer@test.com",
+  "password":"123456"
+}
+
+### Prueba con el token de auth
+POST http://localhost:9090/colecciones/1/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJraWVmZXJAdGVzdC5jb20iLCJpYXQiOjE3NjMxNDIyNjksImV4cCI6MTc2MzE0NTg2OX0.NfHZGXzPzB29hTWfcWcjMfMDLhfwdp5xvCXU2VTmcDw
