@@ -3,6 +3,7 @@ package com.proyecto.booka.service;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -14,8 +15,8 @@ public class NewsService {
     private final RestTemplate restTemplate =
         new RestTemplate();
 
-    private final String API_KEY =
-        "9b48f6774405cccc80edbea6a65dfefe";
+    @Value("${news.api.key}")
+    private String apiKey;
 
     @SuppressWarnings({ "unchecked", "null" })
     public List<NewsArticleDTO> getNoticias() {
@@ -25,7 +26,7 @@ public class NewsService {
             + "?q=books OR literature OR authors"
             + "&lang=en"
             + "&max=12"
-            + "&apikey=" + API_KEY;
+            + "&apikey=" + apiKey;
 
         Map<String, Object> response =
             restTemplate.getForObject(
