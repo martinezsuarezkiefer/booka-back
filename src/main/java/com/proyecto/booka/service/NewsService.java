@@ -15,7 +15,7 @@ public class NewsService {
     private final RestTemplate restTemplate =
         new RestTemplate();
 
-    @Value("${news.api.key}")
+    @Value("${NEWS_API_KEY}")
     private String apiKey;
 
     @SuppressWarnings({ "unchecked", "null" })
