@@ -13,12 +13,23 @@ public class WebConfig implements WebMvcConfigurer {
     @SuppressWarnings("null")
     @Override
     public void addCorsMappings(CorsRegistry registry) {
+
         registry.addMapping("/**")
-                .allowedOrigins("http://localhost:4200")
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS")
-                .allowedHeaders("*")
-                .exposedHeaders("Authorization") 
-                .allowCredentials(true);
+            .allowedOrigins(
+                "http://localhost:4200",
+                "https://booka-front.vercel.app"
+            )
+            .allowedMethods(
+                "GET",
+                "POST",
+                "PUT",
+                "DELETE",
+                "PATCH",
+                "OPTIONS"
+            )
+            .allowedHeaders("*")
+            .exposedHeaders("Authorization")
+            .allowCredentials(true);
     }
 
     @SuppressWarnings("null")
