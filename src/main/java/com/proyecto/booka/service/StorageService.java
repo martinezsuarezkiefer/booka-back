@@ -1,33 +1,54 @@
 package com.proyecto.booka.service;
 
-import org.springframework.beans.factory.annotation.Value;
+import java.io.IOException;
+import java.util.Map;
+
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.IOException;
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 
 @Service
 public class StorageService {
 
-    @Value("${upload.profile.folder}")
-    private String uploadFolder;
+    private final Cloudinary cloudinary;
 
-    public String saveProfileImage(MultipartFile file, Long userId) {
+    public StorageService(
+        Cloudinary cloudinary
+    ) {
+        this.cloudinary = cloudinary;
+    }
 
-        String fileName = "user_" + userId + "_" + System.currentTimeMillis() + ".png";
-
-        File folder = new File(uploadFolder);
-        if (!folder.exists()) folder.mkdirs();
-
-        File destination = new File(folder, fileName);
+    public String saveProfileImage(
+        MultipartFile file,
+        Long userId
+    ) {
 
         try {
-            file.transferTo(destination);
-        } catch (IOException e) {
-            throw new RuntimeException("Error al guardar la imagen", e);
-        }
 
-        return "/uploads/profiles/" + fileName;
+            @SuppressWarnings("rawtypes")
+            Map uploadResult =
+                cloudinary.uploader().upload(
+                    file.getBytes(),
+                    ObjectUtils.asMap(
+                        "folder",
+                        "booka/profiles",
+                        "public_id",
+                        "user_" + userId
+                    )
+                );
+
+            return uploadResult
+                .get("secure_url")
+                .toString();
+
+        } catch (IOException e) {
+
+            throw new RuntimeException(
+                "Error subiendo imagen",
+                e
+            );
+        }
     }
 }
